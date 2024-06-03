@@ -15,6 +15,7 @@ import { Box } from '@mui/material';
 
 const BottomAppBar = () => {
 
+    //現在どのパスを参照しているかを確認するためのuseState
     const [value, setValue] = React.useState('');
     const [pathname, setPathname] = React.useState('');
 
@@ -22,11 +23,13 @@ const BottomAppBar = () => {
         setValue(newValue);
     };
 
+    //現在のパスを格納
     useEffect(() => {
         setValue(window.location.pathname);
         setPathname(window.location.pathname);
     }, []);
 
+    //ボタンを押すとURLを更新
     const TransitionToHome = () => {
         window.location.pathname = "/home"
     }
@@ -42,6 +45,7 @@ const BottomAppBar = () => {
     const TransitionToAccount = () => {
         window.location.pathname = "/account"
     }
+
     return (
         <Box>
             <BottomNavigation sx={{
@@ -67,6 +71,7 @@ const BottomAppBar = () => {
                         '&.Mui-selected': { color: 'black' }
                     }}
                 />
+
                 <BottomNavigationAction
                     value="/add"
                     onClick={TransitionToAdd}
@@ -76,6 +81,7 @@ const BottomAppBar = () => {
                         '&.Mui-selected': { color: 'black' }
                     }}
                 />
+
                 <BottomNavigationAction
                     value="/star"
                     onClick={TransitionToStar}
@@ -85,6 +91,7 @@ const BottomAppBar = () => {
                         '&.Mui-selected': { color: 'black' }
                     }}
                 />
+
                 <BottomNavigationAction
                     value="/account"
                     onClick={TransitionToAccount}

@@ -1,14 +1,9 @@
-import Image from "next/image";
-import BottomAppBar from "./components/BottomAppBar";
-
+import Button from '@mui/material/Button';
 
 export default function Home() {
   return (
-    <div>
-      <h1 className='flex h-screen items-center justify-center font-bold text-4xl'>
-        this is test page !!
-      </h1>
-      <BottomAppBar />
-    </div>
+    <main>
+      <Button variant="contained">Contained</Button>
+    </main>
   );
 }
