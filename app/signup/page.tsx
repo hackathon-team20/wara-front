@@ -3,7 +3,7 @@
 import {Box, Container, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import {useState} from "react";
-import TextForm from "@/app/signup/TextForm";
+import TextForm from "@/app/components/TextForm";
 
 export default function SignUpPage() {
     const [step, setStep] = useState(1)
