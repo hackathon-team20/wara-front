@@ -16,7 +16,6 @@ export default function PostForm() {
         >
             <Typography
                 variant={"h5"}
-                my={"20px"}
                 mb={"15px"}
                 fontWeight={"bold"}
                 width={"100%"}
@@ -25,9 +24,9 @@ export default function PostForm() {
             </Typography>
             <TextareaAutosize
                 placeholder="回答を入力してください"
+                minRows={"5"}
                 style={{
                     width: "100%",
-                    height: "140px",
                     margin: "10px 0",
                     padding: "10px",
                     border: "1px solid gray",

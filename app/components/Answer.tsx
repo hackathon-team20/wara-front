@@ -1,18 +1,15 @@
 import {Box, Typography} from "@mui/material";
 
-interface Props {
-    title: string
-}
-
-export default function Title(props: Props) {
+export default function Answer() {
     return (
-        <Box height={"25vh"} my={"55px"}>
+        <Box
+            margin={"auto"}
+            width={"90%"}
+        >
             <Typography variant={"h5"} component={"h5"} fontWeight={"bold"}>
-                お題
+                あなたの回答
             </Typography>
             <Box
-                bgcolor={"gray"}
-                mt={"2px"}
                 display={"flex"}
                 justifyContent={"center"}
                 alignItems={"center"}
@@ -22,14 +19,12 @@ export default function Title(props: Props) {
                     width: "100%"
                 }}
             >
-                <Box
-                    component={"img"}
-                    width={"100%"}
-                    height={"150%"}
-                    src={"https://i.imgur.com/qfbXMYL.jpeg"}
+                <Typography
+                    variant={"h3"}
+                    fontWeight={"bolder"}
                 >
-
-                </Box>
+                    火星婦のミタ
+                </Typography>
             </Box>
         </Box>
     )
