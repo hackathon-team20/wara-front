@@ -2,9 +2,7 @@
 
 import React from 'react'
 import { Avatar, Box, Chip, Paper, Typography, createTheme } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { getAllUserRanking } from '../api';
-import { theme } from '../theme';
 import ShowTop3 from '../components/ShowTop3';
 import Show4thOrLower from '../components/Show4thOrLower';
 
