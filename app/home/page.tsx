@@ -1,12 +1,15 @@
 import React from 'react'
+import { getAllPosts } from '../api';
+import TimeLine from '../components/TimeLine';
 
-const page = () => {
-    const Users = [
-
-    ]
+const page = async () => {
+    const post_res: any = await getAllPosts();
+    console.log(post_res);
     return (
-        <div>page</div>
-    )
+        <div>
+            <TimeLine posts={post_res} />
+        </div>
+    );
 }
 
 export default page
