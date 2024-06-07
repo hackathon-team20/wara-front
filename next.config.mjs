@@ -9,5 +9,6 @@ const nextConfig = {
 };
 
 export default withPWA({
-    dest: "public"
+    dest: "public",
+    buildExcludes: [/middleware-manifest.json$/],
 });
