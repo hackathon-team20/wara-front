@@ -17,7 +17,8 @@ const Show4thOrLower = ({ users }: UsersProps) => {
                     <Typography sx={{ flexGrow: 1 }}>{user.user_name}</Typography>
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1 }}>
                         <FavoriteIcon sx={{ mr: 1, color: '#f50057' }} />
-                        <Typography>{user.HeartPoints.toLocaleString()}</Typography>
+                        <Typography>{user.User_HeartPoints.toLocaleString()}</Typography>
+                        {/* <Typography>{user.User_HeartPoints.toLocaleString()}</Typography> */}
                     </Box>
                 </Box>
             ))}

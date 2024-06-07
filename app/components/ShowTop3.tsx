@@ -29,7 +29,7 @@ const ShowTop3 = ({ users }: UsersProps) => {
                 <Typography>{users[1].user_name}</Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1 }}>
                     <FavoriteIcon sx={{ mr: 1, color: '#f50057' }} />
-                    <Typography>{users[1].HeartPoints.toLocaleString()}</Typography>
+                    <Typography>{users[1].User_HeartPoints.toLocaleString()}</Typography>
                 </Box>
             </Box>
             <Box sx={{ textAlign: 'center', position: 'relative' }}>
@@ -50,7 +50,7 @@ const ShowTop3 = ({ users }: UsersProps) => {
                 <Typography>{users[0].user_name}</Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1 }}>
                     <FavoriteIcon sx={{ mr: 1, color: '#f50057' }} />
-                    <Typography>{users[0].HeartPoints.toLocaleString()}</Typography>
+                    <Typography>{users[0].User_HeartPoints.toLocaleString()}</Typography>
                 </Box>
             </Box>
             <Box sx={{ textAlign: 'center', position: 'relative', paddingTop: 2 }}>
@@ -72,7 +72,7 @@ const ShowTop3 = ({ users }: UsersProps) => {
                 <Typography>{users[2].user_name}</Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1 }}>
                     <FavoriteIcon sx={{ mr: 1, color: '#f50057' }} />
-                    <Typography>{users[2].HeartPoints.toLocaleString()}</Typography>
+                    <Typography>{users[2].User_HeartPoints.toLocaleString()}</Typography>
                 </Box>
             </Box>
         </Box>

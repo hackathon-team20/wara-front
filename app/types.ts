@@ -6,9 +6,9 @@ export interface User {
 }
 
 export interface UserInfo {
-    user_id: Number;
+    user_id: number;
     user_name: string;
-    User_HeartPoints: Number;
+    User_HeartPoints: number;
     user_icon: string;
     email: string;
 }
