@@ -5,7 +5,7 @@ import { Posts, User } from '../types'
 import { Avatar, Box, Button, Card, CardContent, CardHeader, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { DecrementHeartPoints, IncrementHeartPoints } from '../api';
+//import { DecrementHeartPoints, IncrementHeartPoints } from '../api';
 
 interface PostsProps {
     posts: Posts[];
@@ -15,15 +15,16 @@ const TimeLine = ({ posts }: PostsProps) => {
     const [Allposts, setPost] = useState(posts);
     const [likedPosts, setLikedPosts] = useState<{ [key: number]: boolean }>({});
 
+    //ハートアイコンを押したときの処理
     const toggleHeartCount = (userId: number) => {
         setLikedPosts(prevLikedPosts => {
             const isLiked = prevLikedPosts[userId];
             const updatedPosts = Allposts.map(post => {
                 if (post.user_id === userId) {
                     if (isLiked) {
-                        return { ...post, Post_HeartPoints: post.Post_HeartPoints - 1 };
+                        return { ...post, total_hearts: post.total_hearts - 1 };
                     } else {
-                        return { ...post, Post_HeartPoints: post.Post_HeartPoints + 1 };
+                        return { ...post, total_hearts: post.total_hearts + 1 };
                     }
                 }
                 return post;
@@ -51,7 +52,9 @@ const TimeLine = ({ posts }: PostsProps) => {
                         </Typography>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             <Button
-                                startIcon={likedPosts[post.user_id] ? <FavoriteIcon sx={{ color: '#f50057', width: 30, height: 30 }} /> : <FavoriteBorderIcon sx={{ color: '#f50057', width: 30, height: 30 }} />}
+                                startIcon={likedPosts[post.user_id] || post.isReviewedByUser
+                                    ? <FavoriteIcon sx={{ color: '#f50057', width: 30, height: 30 }} />
+                                    : <FavoriteBorderIcon sx={{ color: '#f50057', width: 30, height: 30 }} />}
                                 onClick={() => {
                                     toggleHeartCount(post.user_id)
 
@@ -67,7 +70,7 @@ const TimeLine = ({ posts }: PostsProps) => {
                                 sx={{ marginLeft: 'auto', marginRight: 1 }}
                             />
                             <Typography sx={{ marginLeft: 0.5 }}>
-                                {post.Post_HeartPoints}
+                                {post.total_hearts}
                             </Typography>
                         </Box>
 
