@@ -12,13 +12,13 @@ const useCheckToken = () => {
   var token = null;
   if (typeof window !== "undefined") {
     token = localStorage.getItem("token");
-  }
-  if (token) {
-    console.log("トークン確認, ホームに遷移");
-    window.location.pathname = "/home";
-  } else {
-    console.log("トークン無し, ログインに遷移");
-    window.location.pathname = "/login";
+    if (token) {
+      console.log("トークン確認, ホームに遷移");
+      window.location.pathname = "/home";
+    } else {
+      console.log("トークン無し, ログインに遷移");
+      window.location.pathname = "/login";
+    }
   }
   console.log("トークンチェック終了");
 };

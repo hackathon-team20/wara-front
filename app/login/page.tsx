@@ -68,7 +68,9 @@ export default function LoginPage() {
         console.log("トークン:", token);
 
         // /homeに遷移
-        window.location.pathname = "/home";
+        if (typeof window !== "undefined") {
+          window.location.pathname = "/home";
+        }
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || "ログイン失敗"); // エラーメッセージを状態に設定

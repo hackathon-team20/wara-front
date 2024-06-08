@@ -75,7 +75,9 @@ export default function SignUpPage() {
         }
 
         // /homeに遷移
-        window.location.pathname = "/home";
+        if (typeof window !== "undefined") {
+          window.location.pathname = "/home";
+        }
       } else {
         console.log("登録失敗", data);
       }
