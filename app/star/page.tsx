@@ -5,7 +5,7 @@ import ShowTop3 from '../components/ShowTop3'
 import Show4thOrLower from '../components/Show4thOrLower'
 import { Users } from '../types'
 
-const page = () => {
+const Page = () => {
   const [Users, setUsers] = useState<Users | undefined>()
 
   useEffect(() => {
@@ -43,4 +43,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

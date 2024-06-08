@@ -6,7 +6,7 @@ import BottomAppBar from '../components/BottomAppBar'
 import Title from '../components/Title'
 import { TimeLineData } from '../types'
 
-const page = () => {
+const Page = () => {
   const [Timeline, setTimeline] = useState<TimeLineData | undefined>()
 
   useEffect(() => {
@@ -34,4 +34,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
