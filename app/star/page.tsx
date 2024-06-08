@@ -2,11 +2,10 @@ import React from 'react'
 import { Box } from '@mui/material'
 import ShowTop3 from '../components/ShowTop3'
 import Show4thOrLower from '../components/Show4thOrLower'
-import { getAllUserRanking } from '../api'
+import { fetchAllUserRanking } from '../api'
 
 const page = async () => {
-  //ちゃんとapi通してやるならこっちのコメントアウトを外す
-  const users = await getAllUserRanking()
+  const usersData = await fetchAllUserRanking()
 
   return (
     <Box sx={{ padding: 2, paddingTop: 6 }}>
@@ -21,8 +20,8 @@ const page = async () => {
       >
         Leaderboard
       </h1>
-      <ShowTop3 users={users.users} />
-      <Show4thOrLower users={users.users} />
+      <ShowTop3 users={usersData.users} />
+      <Show4thOrLower users={usersData.users} />
     </Box>
   )
 }
