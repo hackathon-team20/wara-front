@@ -1,7 +1,7 @@
 import { Avatar, Box, Chip, Link, Typography } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import React from 'react'
-import { User, UserInfo } from '../types'
+import { User } from '../types'
 
 interface UsersProps {
   users: User[]

@@ -1,4 +1,4 @@
-import {Box, Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 interface Props {
     title: string
@@ -7,7 +7,12 @@ interface Props {
 export default function Title(props: Props) {
     return (
         <Box height={"25vh"} my={"55px"}>
-            <Typography variant={"h5"} component={"h5"} fontWeight={"bold"}>
+            <Typography
+                variant={"h4"}
+                component={"h5"}
+                fontWeight={"bold"}
+                textAlign={"center"}
+            >
                 お題
             </Typography>
             <Box
@@ -18,18 +23,16 @@ export default function Title(props: Props) {
                 alignItems={"center"}
                 textAlign={"center"}
                 sx={{
-                    height: "180px",
+                    height: "auto",
                     width: "100%"
                 }}
             >
                 <Box
                     component={"img"}
                     width={"100%"}
-                    height={"150%"}
+                    height={"auto"}
                     src={"https://i.imgur.com/qfbXMYL.jpeg"}
-                >
-
-                </Box>
+                />
             </Box>
         </Box>
     )
