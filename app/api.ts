@@ -21,7 +21,6 @@ export const fetchMyUser = async (): Promise<DetailUser> => {
     cache: 'no-store'
   })
   const MyUser = res.json()
-  console.log(MyUser)
   return MyUser
 }
 

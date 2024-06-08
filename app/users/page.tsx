@@ -5,7 +5,6 @@ import { fetchMyUser } from '../api'
 
 export default async function Page() {
   const MyUser = await fetchMyUser()
-  console.log(MyUser.user.name)
   return (
     <Container
       component="main"
@@ -31,7 +30,6 @@ export default async function Page() {
       <List sx={{ width: '100%' }}>
         <ListItem>
           <ListItemText primary="名前" secondary="けんしん" />
-          <p>{MyUser.user.id}</p>
         </ListItem>
         <ListItem>
           <ListItemText primary="Email" secondary="name@domain.com" />

@@ -51,8 +51,8 @@ export default async function Page({ params }: { params: { id: number } }) {
         >
           {/* TODO：postが複数個になるとレイアウト崩れます */}
           {DetailPosts.posts.map((post: Post) => (
-            <Link href={`./posts/${DetailPosts.posts[0].id}`} underline="hover" color="inherit">
-              {DetailPosts.posts[0].topic.topic}
+            <Link key={post.id} href={`./posts/${DetailPosts.posts[0].id}`} underline="hover" color="inherit">
+              {DetailPosts.posts[0].topic.image}
             </Link>
           ))}
         </Button>
