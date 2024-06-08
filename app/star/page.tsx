@@ -1,11 +1,28 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import { Box } from '@mui/material'
 import ShowTop3 from '../components/ShowTop3'
 import Show4thOrLower from '../components/Show4thOrLower'
-import { fetchAllUserRanking } from '../api'
+import { Users } from '../types'
 
-const page = async () => {
-  const usersData = await fetchAllUserRanking()
+const Page = () => {
+  const [Users, setUsers] = useState<Users | undefined>()
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    const fetchAllUserRanking = async (token: string | null) => {
+      const res = await fetch('https://wara-back-qr9q.onrender.com/api/user/users', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        cache: 'no-store'
+      })
+      const UsersRanking = await res.json()
+      setUsers(UsersRanking)
+    }
+    fetchAllUserRanking(token)
+  }, [])
 
   return (
     <Box sx={{ padding: 2, paddingTop: 6 }}>
@@ -20,10 +37,10 @@ const page = async () => {
       >
         Leaderboard
       </h1>
-      <ShowTop3 users={usersData.users} />
-      <Show4thOrLower users={usersData.users} />
+      {Users && <ShowTop3 users={Users.users} />}
+      {Users && <Show4thOrLower users={Users.users} />}
     </Box>
   )
 }
 
-export default page
+export default Page

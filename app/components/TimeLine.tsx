@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { Post, Posts, TimeLineData, User } from '../types'
+import { Post, Posts, TimeLineData, TimeLinePost, User } from '../types'
 import { Avatar, Box, Button, Card, CardContent, CardHeader, Typography } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
