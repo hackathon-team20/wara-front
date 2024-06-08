@@ -8,7 +8,7 @@ const page = async () => {
     const post_res: any = await getAllPosts();
     return (
         <div>
-            <Title title='test' />
+            <Title topic='test' image='n' />
             <TimeLine posts={post_res} />
             <BottomAppBar />
         </div>
