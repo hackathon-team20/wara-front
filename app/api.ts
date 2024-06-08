@@ -95,29 +95,31 @@ export const fetchDetailPost = async (id: number): Promise<PostData> => {
   })
   const Post = res.json()
   return Post
+}
 
 export const getAllPosts = async (): Promise<Posts[]> => {
-    const res = await fetch('http://localhost:3001/post', { cache: 'no-store' });
-    const AllPosts = res.json();
+  const res = await fetch('http://localhost:3001/post', { cache: 'no-store' })
+  const AllPosts = res.json()
 
-    return AllPosts;
+  return AllPosts
 }
 
 export const IncrementHeartPoints = async (id: number): Promise<void> => {
-    String(id);
-    const res = await fetch(`http://localhost:3001/post/${id}`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
+  String(id)
+  const res = await fetch(`http://localhost:3001/post/${id}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 }
 
 export const DecrementHeartPoints = async (id: number): Promise<void> => {
-    String(id);
-    const res = await fetch(`http://localhost:3001/post/${id}`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
+  String(id)
+  const res = await fetch(`http://localhost:3001/post/${id}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
