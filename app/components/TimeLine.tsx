@@ -63,7 +63,6 @@ const TimeLine = ({ posts }: PostsProps) => {
                             <Button
                                 onClick={() => {
                                     toggleHeartCount(post.user_id)
-                                    //post.isReviewedByUser = !post.isReviewedByUser
                                     // いいね数更新のapiを叩けるようにするなら以下5行のコメントアウトを外す
 
                                     // if (!likedPosts[post.user_id]) {
@@ -73,7 +72,7 @@ const TimeLine = ({ posts }: PostsProps) => {
                                     // }
                                 }
                                 }
-                                //startIcon={likedPosts[post.user_id] || post.isReviewedByUser
+
                                 startIcon={likedPosts[post.user_id]
                                     ? <FavoriteIcon sx={{ color: '#f50057', width: 30, height: 30 }} />
                                     : <FavoriteBorderIcon sx={{ color: '#f50057', width: 30, height: 30 }} />}
