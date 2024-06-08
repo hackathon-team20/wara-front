@@ -1,18 +1,18 @@
 import React from 'react'
-import { getAllPosts } from '../api';
-import TimeLine from '../components/TimeLine';
-import BottomAppBar from '../components/BottomAppBar';
-import Title from '../components/Title';
+import { fetchTimeline, getAllPosts } from '../api'
+import TimeLine from '../components/TimeLine'
+import BottomAppBar from '../components/BottomAppBar'
+import Title from '../components/Title'
 
 const page = async () => {
-    const post_res: any = await getAllPosts();
-    return (
-        <div>
-            <Title topic='test' image='n' />
-            <TimeLine posts={post_res} />
-            <BottomAppBar />
-        </div>
-    );
+  const Timeline = await fetchTimeline()
+  return (
+    <div>
+      <Title topic="test" image="n" />
+      <TimeLine posts={Timeline.posts} />
+      <BottomAppBar />
+    </div>
+  )
 }
 
 export default page

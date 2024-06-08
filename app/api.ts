@@ -1,4 +1,17 @@
-import { DetailUser, PostData, Posts, Topic, TopicData, Users } from './types'
+import { DetailUser, PostData, Posts, TimeLineData, Topic, TopicData, Users } from './types'
+
+//タイムラインの投稿の取得
+//認証終わったらAPI叩けるはず
+export const fetchTimeline = async (): Promise<TimeLineData> => {
+  const res = await fetch('http://localhost:8000/api/user/posts', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    cache: 'no-store'
+  })
+  const Timeline = await res.json()
+  return Timeline
+}
 
 //ユーザーの獲得いいね数ランキングを取ってくる
 export const fetchAllUserRanking = async (): Promise<Users> => {
