@@ -70,7 +70,9 @@ export default function SignUpPage() {
       const data = await res.json();
       if (res.status === 201) {
         console.log("登録成功");
-        localStorage.setItem("token", data.token);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("token", data.token);
+        }
 
         // /homeに遷移
         window.location.pathname = "/home";

@@ -60,7 +60,9 @@ export default function LoginPage() {
         const token = data.token;
 
         // ローカルストレージにトークンを保存
-        localStorage.setItem("token", token);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("token", token);
+        }
 
         console.log("ログイン成功");
         console.log("トークン:", token);

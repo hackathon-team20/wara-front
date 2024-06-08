@@ -9,7 +9,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 const useCheckToken = () => {
   console.log("トークンチェック開始");
-  const token = localStorage.getItem("token");
+  var token = null;
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("token");
+  }
   if (token) {
     console.log("トークン確認, ホームに遷移");
     window.location.pathname = "/home";
