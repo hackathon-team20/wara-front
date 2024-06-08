@@ -1,15 +1,18 @@
 import React from 'react'
-import BottomAppBar from '../components/BottomAppBar'
+import { getAllPosts } from '../api';
+import TimeLine from '../components/TimeLine';
+import BottomAppBar from '../components/BottomAppBar';
+import Title from '../components/Title';
 
-const page = () => {
+const page = async () => {
+    const post_res: any = await getAllPosts();
     return (
         <div>
-            <h1 className='flex h-screen items-center justify-center font-bold text-4xl'>
-                this is /home page !!
-            </h1>
+            <Title title='test' />
+            <TimeLine posts={post_res} />
             <BottomAppBar />
         </div>
-    )
+    );
 }
 
 export default page
