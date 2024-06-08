@@ -1,4 +1,4 @@
-import { Avatar, Box, Chip, Typography } from '@mui/material'
+import { Avatar, Box, Chip, Link, Typography } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import React from 'react'
 import { Users } from '../types'
@@ -22,8 +22,10 @@ const ShowTop3 = ({ users }: Users) => {
             zIndex: 1
           }}
         />
-        <Avatar src={users[1].icon} sx={{ width: 90, height: 90, mb: 1 }} />
-        <Typography>{users[1].name}</Typography>
+        <Link href={`./users/${users[1].id}`} underline="hover" color="inherit">
+          <Avatar src={users[1].icon} sx={{ width: 90, height: 90, mb: 1 }} />
+          <Typography>{users[1].name}</Typography>
+        </Link>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1 }}>
           <FavoriteIcon sx={{ mr: 1, color: '#f50057' }} />
           <Typography>{users[1].user_total_hearts.toLocaleString()}</Typography>
@@ -44,8 +46,10 @@ const ShowTop3 = ({ users }: Users) => {
             zIndex: 1
           }}
         />
-        <Avatar src={users[0].icon} sx={{ width: 100, height: 100, mb: 1 }} />
-        <Typography>{users[0].name}</Typography>
+        <Link href={`./users/${users[0].id}`} underline="hover" color="inherit">
+          <Avatar src={users[0].icon} sx={{ width: 100, height: 100, mb: 1 }} />
+          <Typography>{users[0].name}</Typography>
+        </Link>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1 }}>
           <FavoriteIcon sx={{ mr: 1, color: '#f50057' }} />
           <Typography>{users[0].user_total_hearts.toLocaleString()}</Typography>
@@ -66,8 +70,10 @@ const ShowTop3 = ({ users }: Users) => {
             zIndex: 1
           }}
         />
-        <Avatar src={users[2].icon} sx={{ width: 90, height: 90, mb: 1 }} />
-        <Typography>{users[2].name}</Typography>
+        <Link href={`./users/${users[2].id}`} underline="hover" color="inherit">
+          <Avatar src={users[2].icon} sx={{ width: 90, height: 90, mb: 1 }} />
+          <Typography>{users[2].name}</Typography>
+        </Link>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1 }}>
           <FavoriteIcon sx={{ mr: 1, color: '#f50057' }} />
           <Typography>{users[2].user_total_hearts.toLocaleString()}</Typography>
