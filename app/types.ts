@@ -5,10 +5,6 @@ export interface UserInfo {
   user_icon: string
 }
 
-export interface Users {
-  users: User[]
-}
-
 export interface User {
   id: number
   name: string
@@ -19,4 +15,43 @@ export interface User {
   icon: string
   is_admin: boolean
   user_total_hearts: number
+}
+
+export interface Post {
+  id: number
+  topic_id: number
+  user_id: number
+  post_content: string
+  created_at: string
+  updated_at: string
+  total_hearts: number
+  topic: Topic
+}
+
+export interface Topic {
+  id: number
+  topic: string
+  image: string
+  created_at: string
+  updated_at: string
+}
+
+export interface Users {
+  users: User[]
+}
+
+export interface DetailUser {
+  user: User
+}
+
+export interface TopicData {
+  topic: Topic
+}
+
+export interface PostData {
+  post: Post
+}
+
+export interface Posts {
+  posts: Post[]
 }

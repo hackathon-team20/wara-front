@@ -1,6 +1,11 @@
 import {Box, Typography} from "@mui/material";
-
-export default function Answer() {
+import { fetchDetailPost } from "../api";
+interface Props {
+    id: number
+  }
+  
+export default async function Answer(props: Props) {
+    const PostData = await fetchDetailPost(props.id)
     return (
         <Box
             margin={"auto"}
@@ -23,7 +28,7 @@ export default function Answer() {
                     variant={"h3"}
                     fontWeight={"bolder"}
                 >
-                    火星婦のミタ
+                    {PostData.post.post_content}
                 </Typography>
             </Box>
         </Box>

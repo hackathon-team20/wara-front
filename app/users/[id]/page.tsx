@@ -1,11 +1,11 @@
-//TODO:トークンがないとできないので認証作ってから実装
+import { Avatar, Box, Button, Container, Link, List, ListItem, ListItemText } from '@mui/material'
+import { fetchDetailUser, fetchMyUser, fetchUserPosts } from '../../api'
+import { Post } from '@/app/types'
 
-import { Avatar, Box, Button, Container, List, ListItem, ListItemText } from '@mui/material'
-import { fetchMyUser } from '../api'
+export default async function Page({ params }: { params: { id: number } }) {
+  const DetailUser = await fetchDetailUser(params.id)
+  const DetailPosts = await fetchUserPosts(params.id)
 
-export default async function Page() {
-  const MyUser = await fetchMyUser()
-  console.log(MyUser.user.name)
   return (
     <Container
       component="main"
@@ -30,11 +30,10 @@ export default async function Page() {
       </Box>
       <List sx={{ width: '100%' }}>
         <ListItem>
-          <ListItemText primary="名前" secondary="けんしん" />
-          <p>{MyUser.user.id}</p>
+          <ListItemText primary="名前" secondary={DetailUser.user.name} />
         </ListItem>
         <ListItem>
-          <ListItemText primary="Email" secondary="name@domain.com" />
+          <ListItemText primary="Email" secondary={DetailUser.user.email} />
         </ListItem>
       </List>
       <Box my={4} textAlign="center" display="flex" justifyContent="center" gap={2}>
@@ -50,7 +49,12 @@ export default async function Page() {
             }
           }}
         >
-          過去の答えたお題
+          {/* TODO：postが複数個になるとレイアウト崩れます */}
+          {DetailPosts.posts.map((post: Post) => (
+            <Link href={`./posts/${DetailPosts.posts[0].id}`} underline="hover" color="inherit">
+              {DetailPosts.posts[0].topic.topic}
+            </Link>
+          ))}
         </Button>
         <Button
           variant="outlined"
