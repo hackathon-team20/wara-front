@@ -8,7 +8,7 @@ interface Props {
 export default function Title(props: Props) {
   return (
     <Box height={'25vh'} my={'55px'}>
-      <Typography variant={'h5'} component={'h5'} fontWeight={'bold'}>
+      <Typography variant={'h4'} component={'h5'} fontWeight={'bold'} textAlign={"center"}>
         {props.topic}
       </Typography>
       <Box
@@ -19,11 +19,11 @@ export default function Title(props: Props) {
         alignItems={'center'}
         textAlign={'center'}
         sx={{
-          height: '180px',
+          height: 'auto',
           width: '100%'
         }}
       >
-        <Box component={'img'} width={'100%'} height={'150%'} src={props.image}></Box>
+        <Box component={'img'} width={'100%'} height={'auto'} src={props.image}></Box>
       </Box>
     </Box>
   )
