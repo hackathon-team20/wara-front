@@ -5,11 +5,10 @@ export interface User {
     email: string;
 }
 
-
 export interface Posts {
     id: number;
     topic_id: Number;
-    user_id: Number;
+    user_id: number;
     post_content: string;
     created_at: string;
     updated_at: string;
