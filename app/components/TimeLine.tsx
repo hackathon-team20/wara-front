@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Posts, User } from '../types'
 import { Avatar, Box, Button, Card, CardContent, CardHeader, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -14,6 +14,15 @@ const TimeLine = ({ posts }: PostsProps) => {
 
     const [Allposts, setPost] = useState(posts);
     const [likedPosts, setLikedPosts] = useState<{ [key: number]: boolean }>({});
+
+    // 初期状態を設定
+    useEffect(() => {
+        const initialLikedPosts: { [key: number]: boolean } = {};
+        posts.forEach(post => {
+            initialLikedPosts[post.user_id] = post.isReviewedByUser;
+        });
+        setLikedPosts(initialLikedPosts);
+    }, [posts]);
 
     //ハートアイコンを押したときの処理
     const toggleHeartCount = (userId: number) => {
@@ -52,12 +61,9 @@ const TimeLine = ({ posts }: PostsProps) => {
                         </Typography>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             <Button
-                                startIcon={likedPosts[post.user_id] || post.isReviewedByUser
-                                    ? <FavoriteIcon sx={{ color: '#f50057', width: 30, height: 30 }} />
-                                    : <FavoriteBorderIcon sx={{ color: '#f50057', width: 30, height: 30 }} />}
                                 onClick={() => {
                                     toggleHeartCount(post.user_id)
-
+                                    //post.isReviewedByUser = !post.isReviewedByUser
                                     // いいね数更新のapiを叩けるようにするなら以下5行のコメントアウトを外す
 
                                     // if (!likedPosts[post.user_id]) {
@@ -67,6 +73,10 @@ const TimeLine = ({ posts }: PostsProps) => {
                                     // }
                                 }
                                 }
+                                //startIcon={likedPosts[post.user_id] || post.isReviewedByUser
+                                startIcon={likedPosts[post.user_id]
+                                    ? <FavoriteIcon sx={{ color: '#f50057', width: 30, height: 30 }} />
+                                    : <FavoriteBorderIcon sx={{ color: '#f50057', width: 30, height: 30 }} />}
                                 sx={{ marginLeft: 'auto', marginRight: 1 }}
                             />
                             <Typography sx={{ marginLeft: 0.5 }}>
