@@ -54,11 +54,14 @@ const TimeLine = ({ posts }: PostsProps) => {
                                 startIcon={likedPosts[post.user_id] ? <FavoriteIcon sx={{ color: '#f50057', width: 30, height: 30 }} /> : <FavoriteBorderIcon sx={{ color: '#f50057', width: 30, height: 30 }} />}
                                 onClick={() => {
                                     toggleHeartCount(post.user_id)
-                                    if (!likedPosts[post.user_id]) {
-                                        IncrementHeartPoints(post.id)
-                                    } else {
-                                        DecrementHeartPoints(post.id)
-                                    }
+
+                                    // いいね数更新のapiを叩けるようにするなら以下5行のコメントアウトを外す
+
+                                    // if (!likedPosts[post.user_id]) {
+                                    //     IncrementHeartPoints(post.id)
+                                    // } else {
+                                    //     DecrementHeartPoints(post.id)
+                                    // }
                                 }
                                 }
                                 sx={{ marginLeft: 'auto', marginRight: 1 }}

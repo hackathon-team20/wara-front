@@ -7,18 +7,15 @@ export const getAllPosts = async (): Promise<Posts[]> => {
     return AllPosts;
 }
 
-export const IncrementHeartPoints = async (id: number): Promise<Posts> => {
+export const IncrementHeartPoints = async (id: number): Promise<void> => {
     String(id);
-    const res = await fetch(`http://localhost:3001/post/7`, {
+    const res = await fetch(`http://localhost:3001/post/${id}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(id)
     });
-
-    const NewPosts = res.json();
-    return NewPosts;
 }
 
 export const DecrementHeartPoints = async (id: number): Promise<void> => {
