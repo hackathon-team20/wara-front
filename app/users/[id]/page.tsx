@@ -5,38 +5,23 @@ import { useEffect, useState } from 'react'
 
 export default function Page({ params }: { params: { id: number } }) {
   const [User, setUsers] = useState<DetailUser | undefined>()
-  const [Posts, setPosts] = useState<Posts | undefined>()
 
   useEffect(() => {
-    const token: string | null = localStorage.getItem('token')
-
+    const token = localStorage.getItem('token')
     const fetchDetailUser = async (id: number, token: string | null) => {
-      const res = await fetch(`https://wara-back-qr9q.onrender.com/api/user/otherUser/${id}`, {
+      const res = await fetch(`http://localhost:8000/api/user/otherUser/${id}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
         },
         cache: 'no-store'
       })
-      const User = await res.json()
+      const User: DetailUser = await res.json()
       setUsers(User)
     }
-
-    const fetchUserPosts = async (id: number, token: string | null) => {
-      const res = await fetch(`https://wara-back-qr9q.onrender.com/api/user/otherUserPosts/${id}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        cache: 'no-store'
-      })
-      const Posts = await res.json()
-      setPosts(Posts)
-    }
-
     fetchDetailUser(params.id, token)
-    fetchUserPosts(params.id, token)
-  }, [])
+    console.log(User)
+  }, [params.id])
 
   return (
     <Container
@@ -82,8 +67,8 @@ export default function Page({ params }: { params: { id: number } }) {
           }}
         >
           {/* TODO：postが複数個になるとレイアウト崩れます */}
-          {Posts?.posts.map((post: Post) => (
-            <Link key={post.id} href={`./posts/${post.id}`} underline="hover" color="inherit">
+          {User?.user.posts.map((post: Post) => (
+            <Link key={post.id} href={`/posts/${post.id}`} underline="hover" color="inherit">
               {post.topic.image}
             </Link>
           ))}
