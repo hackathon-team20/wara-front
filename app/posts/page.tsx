@@ -63,7 +63,7 @@ export default function PostPage() {
       </Box>
       <Title topic={topic?.topic} image={topic?.topic_image} />
       {topic.post_id === null ? (
-        <PostForm />
+        <PostForm topicId={topic.topic_id} />
       ) : (
         <Answer post_content={topic.post_content!} />
       )}
