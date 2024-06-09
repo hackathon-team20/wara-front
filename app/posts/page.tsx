@@ -6,8 +6,9 @@ import PostForm from "@/app/posts/PostForm";
 import CountDownTimer from "../components/CountDownTimer";
 import { useEffect, useState } from "react";
 import Answer from "../components/Answer";
+import BottomAppBar from "../components/BottomAppBar";
 
-interface RecentTopic {
+export interface RecentTopic {
   topic_id: number;
   topic: string;
   topic_created_at: Date;
@@ -66,6 +67,7 @@ export default function PostPage() {
       ) : (
         <Answer post_content={topic.post_content!} />
       )}
+      <BottomAppBar />
     </Container>
   );
 }
