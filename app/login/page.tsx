@@ -95,7 +95,7 @@ export default function LoginPage() {
         }}
       >
         <Typography variant="h3" component="h3" pb={15} fontWeight={"bold"}>
-          アプリ名(仮)
+          笑
         </Typography>
         <Box
           width={"100%"}
