@@ -6,7 +6,12 @@ interface Props {
 export default function Answer(props: Props) {
   return (
     <Box margin={"auto"} width={"90%"}>
-      <Typography variant={"h5"} component={"h5"} fontWeight={"bold"}>
+      <Typography
+        variant={"h5"}
+        component={"h5"}
+        fontWeight={"bold"}
+        sx={{ margin: "5px", paddingTop: "10px" }}
+      >
         あなたの回答
       </Typography>
       <Box
