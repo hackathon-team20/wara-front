@@ -10,9 +10,9 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
-import { fetchMyUser } from "../api";
 import { useEffect, useState } from "react";
 import { DetailUser, Post, Posts } from "../types";
+import BottomAppBar from "../components/BottomAppBar";
 
 export default function Page() {
   const [User, setUsers] = useState<DetailUser | undefined>();
@@ -112,6 +112,7 @@ export default function Page() {
           ログアウト
         </Button>
       </Box>
+      <BottomAppBar />
     </Container>
   );
 }
