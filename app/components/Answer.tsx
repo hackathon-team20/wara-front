@@ -24,7 +24,7 @@ export default function Answer(props: Props) {
           width: "100%",
         }}
       >
-        <Typography variant={"h3"} fontWeight={"bolder"}>
+        <Typography variant={"h4"} fontWeight={"bolder"}>
           {props.post_content}
         </Typography>
       </Box>
