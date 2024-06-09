@@ -1,16 +1,55 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { Post, Posts, TimeLineData, TimeLinePost, User } from '../types'
+import { TimeLineData } from '../types'
 import { Avatar, Box, Button, Card, CardContent, CardHeader, Typography } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import { useRouter } from 'next/navigation'
 //import { DecrementHeartPoints, IncrementHeartPoints } from '../api';
+
+async function handleIncrementHeart(id: number) {
+  const token = localStorage.getItem('token')
+  try {
+    const response = await fetch(`http://localhost:8000/api/user/review/${id}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to heart')
+    }
+    console.log('Increment successfully')
+  } catch (error) {
+    console.error('Error:', error)
+  }
+}
+
+async function handleDecrementHeart(id: number) {
+  const token = localStorage.getItem('token')
+  try {
+    const response = await fetch(`http://localhost:8000/api/user/review/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to delete heart')
+    }
+    console.log('delete successfully')
+  } catch (error) {
+    console.error('Error:', error)
+  }
+}
 
 const TimeLine = ({ post }: TimeLineData) => {
   const [Allposts, setPost] = useState(post)
   const [likedPosts, setLikedPosts] = useState<{ [key: number]: boolean }>({})
-
+  const router = useRouter()
   // 初期状態を設定
   useEffect(() => {
     const initialLikedPosts: { [key: number]: boolean } = {}
@@ -42,7 +81,7 @@ const TimeLine = ({ post }: TimeLineData) => {
   return (
     <div>
       {Allposts.map((post) => (
-        <Card key={post.user.id} sx={{ mb: 2 }}>
+        <Card key={post.id} sx={{ mb: 2 }}>
           <CardHeader
             avatar={
               <Avatar src={post.user.icon} alt={`${post.user.name}のアイコン`} sx={{ width: 60, height: 60, mr: 2 }} />
@@ -66,11 +105,13 @@ const TimeLine = ({ post }: TimeLineData) => {
                   toggleHeartCount(post.user_id)
                   // いいね数更新のapiを叩けるようにするなら以下5行のコメントアウトを外す
 
-                  // if (!likedPosts[post.user_id]) {
-                  //     IncrementHeartPoints(post.id)
-                  // } else {
-                  //     DecrementHeartPoints(post.id)
-                  // }
+                  if (!likedPosts[post.user_id]) {
+                    handleIncrementHeart(post.id)
+                    router.refresh()
+                  } else {
+                    handleDecrementHeart(post.id)
+                    router.refresh()
+                  }
                 }}
                 startIcon={
                   likedPosts[post.user_id] ? (
