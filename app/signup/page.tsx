@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Link, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import TextForm from "@/app/components/TextForm";
@@ -168,6 +168,12 @@ export default function SignUpPage() {
           >
             {step === 1 ? "Check Email" : "Sign Up"}
           </Button>
+          <Typography mt={2}>
+            アカウントをお持ちの方は
+            <Link href="/login" variant="body2">
+              こちら
+            </Link>
+          </Typography>
         </Box>
       </Container>
     </main>
