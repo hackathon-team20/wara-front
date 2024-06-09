@@ -1,23 +1,57 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Post, Posts, TimeLineData, TimeLinePost, User } from "../types";
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-} from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-//import { DecrementHeartPoints, IncrementHeartPoints } from '../api';
+
+import React, { useEffect, useState } from 'react'
+import { TimeLineData } from '../types'
+import { Avatar, Box, Button, Card, CardContent, CardHeader, Typography } from '@mui/material'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import { useRouter } from 'next/navigation'
+
+
+async function handleIncrementHeart(id: number) {
+  const token = localStorage.getItem('token')
+  try {
+    const response = await fetch(`http://localhost:8000/api/user/review/${id}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to heart')
+    }
+    console.log('Increment successfully')
+  } catch (error) {
+    console.error('Error:', error)
+  }
+}
+
+async function handleDecrementHeart(id: number) {
+  const token = localStorage.getItem('token')
+  try {
+    const response = await fetch(`http://localhost:8000/api/user/review/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to delete heart')
+    }
+    console.log('delete successfully')
+  } catch (error) {
+    console.error('Error:', error)
+  }
+}
 
 const TimeLine = ({ post }: TimeLineData) => {
-  const [Allposts, setPost] = useState(post);
-  const [likedPosts, setLikedPosts] = useState<{ [key: number]: boolean }>({});
+
+  const [Allposts, setPost] = useState(post)
+  const [likedPosts, setLikedPosts] = useState<{ [key: number]: boolean }>({})
+  const router = useRouter()
 
   // 初期状態を設定
   useEffect(() => {
@@ -85,13 +119,14 @@ const TimeLine = ({ post }: TimeLineData) => {
               <Button
                 onClick={() => {
                   toggleHeartCount(post.user_id);
-                  // いいね数更新のapiを叩けるようにするなら以下5行のコメントアウトを外す
-
-                  // if (!likedPosts[post.user_id]) {
-                  //     IncrementHeartPoints(post.id)
-                  // } else {
-                  //     DecrementHeartPoints(post.id)
-                  // }
+                  
+                  if (!likedPosts[post.user_id]) {
+                    handleIncrementHeart(post.id)
+                    router.refresh()
+                  } else {
+                    handleDecrementHeart(post.id)
+                    router.refresh()
+                  }
                 }}
                 startIcon={
                   likedPosts[post.user_id] ? (
