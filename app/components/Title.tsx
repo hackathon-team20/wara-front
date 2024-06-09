@@ -1,14 +1,14 @@
 import { Box, Typography } from '@mui/material'
 
 interface Props {
-  topic: string
-  image: string
+  topic: string | undefined
+  image: string | undefined
 }
 
 export default function Title(props: Props) {
   return (
     <Box height={'25vh'} my={'55px'}>
-      <Typography variant={'h4'} component={'h5'} fontWeight={'bold'} textAlign={"center"}>
+      <Typography variant={'h4'} component={'h5'} fontWeight={'bold'} textAlign={'center'}>
         {props.topic}
       </Typography>
       <Box

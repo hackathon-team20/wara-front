@@ -11,7 +11,7 @@ export interface TimeLinePost {
 }
 
 export interface TimeLineData {
-  posts: TimeLinePost[]
+  post: TimeLinePost[]
 }
 
 export interface User {
@@ -24,6 +24,7 @@ export interface User {
   icon: string
   is_admin: boolean
   user_total_hearts: number
+  posts: Post[]
 }
 
 export interface Post {
@@ -62,5 +63,5 @@ export interface PostData {
 }
 
 export interface Posts {
-  posts: Post[]
+  post: Post[]
 }

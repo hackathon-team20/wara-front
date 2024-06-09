@@ -11,7 +11,7 @@ const Page = () => {
   useEffect(() => {
     const token = localStorage.getItem('token')
     const fetchAllUserRanking = async (token: string | null) => {
-      const res = await fetch('https://wara-back-qr9q.onrender.com/api/user/users', {
+      const res = await fetch('http://localhost:8000/api/user/users', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`

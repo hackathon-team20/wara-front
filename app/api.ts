@@ -98,10 +98,11 @@ export const fetchDetailTopic = async (id: number): Promise<TopicData> => {
 }
 
 //特定の投稿を取ってくる
-export const fetchDetailPost = async (id: number): Promise<PostData> => {
+export const fetchDetailPost = async (id: number, token: string): Promise<PostData> => {
   const res = await fetch(`http://localhost:8000/api/user/posts/${id}`, {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
     },
     cache: 'no-store'
   })

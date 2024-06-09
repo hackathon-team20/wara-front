@@ -1,34 +1,48 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { fetchTimeline, getAllPosts } from '../api'
 import TimeLine from '../components/TimeLine'
 import BottomAppBar from '../components/BottomAppBar'
 import Title from '../components/Title'
 import { TimeLineData } from '../types'
 
 const Page = () => {
-  const [Timeline, setTimeline] = useState<TimeLineData | undefined>()
+  const [timeline, setTimeline] = useState<TimeLineData | undefined>(undefined)
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    const fetchTimeline = async (token: string | null) => {
-      const res = await fetch('http://localhost:8000/api/user/posts', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        cache: 'no-store'
-      })
-      const Timeline = await res.json()
-      setTimeline(Timeline)
+    const fetchTimeline = async () => {
+      const token = localStorage.getItem('token')
+      if (!token) {
+        console.error('Token not found')
+        return
+      }
+
+      try {
+        const res = await fetch('http://localhost:8000/api/user/posts', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          cache: 'no-store'
+        })
+
+        if (!res.ok) {
+          throw new Error('Failed to fetch timeline data')
+        }
+
+        const data: TimeLineData = await res.json()
+        setTimeline(data)
+      } catch (error) {
+        console.error('Error fetching timeline data:', error)
+      }
     }
-    fetchTimeline(token)
+
+    fetchTimeline()
   }, [])
 
   return (
     <div>
       <Title topic="test" image="n" />
-      {Timeline && <TimeLine posts={Timeline.posts} />}
+      {timeline && <TimeLine post={timeline.post} />}
       <BottomAppBar />
     </div>
   )

@@ -7,18 +7,18 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 //import { DecrementHeartPoints, IncrementHeartPoints } from '../api';
 
-const TimeLine = ({ posts }: TimeLineData) => {
-  const [Allposts, setPost] = useState(posts)
+const TimeLine = ({ post }: TimeLineData) => {
+  const [Allposts, setPost] = useState(post)
   const [likedPosts, setLikedPosts] = useState<{ [key: number]: boolean }>({})
 
   // 初期状態を設定
   useEffect(() => {
     const initialLikedPosts: { [key: number]: boolean } = {}
-    posts.forEach((post) => {
+    post.forEach((post) => {
       initialLikedPosts[post.user_id] = post.isReviewedByUser
     })
     setLikedPosts(initialLikedPosts)
-  }, [posts])
+  }, [post])
 
   //ハートアイコンを押したときの処理
   const toggleHeartCount = (userId: number) => {
